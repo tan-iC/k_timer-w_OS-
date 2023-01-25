@@ -33,23 +33,27 @@
 
 	/* Object initializer [task] */
 
-#define TNUM_TSKID 4
+#define TNUM_TSKID 6
 
 const ID _kernel_tmax_tskid = (TMIN_TSKID + TNUM_TSKID - 1);
 
 static __STK_UNIT __stack_LED_TASK[__TCOUNT_STK_UNIT(386)];
 static __STK_UNIT __stack_SW_TASK[__TCOUNT_STK_UNIT(386)];
+static __STK_UNIT __stack_LED1_TASK[__TCOUNT_STK_UNIT(386)];
+static __STK_UNIT __stack_LED4_TASK[__TCOUNT_STK_UNIT(386)];
 static __STK_UNIT __stack_LOGTASK[__TCOUNT_STK_UNIT(LOGTASK_STACK_SIZE)];
 static __STK_UNIT __stack_MONTASK[__TCOUNT_STK_UNIT(MONITOR_STACK_SIZE)];
 
 const TINIB _kernel_tinib_table[TNUM_TSKID] = {
 	{TA_HLNG | TA_ACT, (VP_INT)(( VP_INT ) 0), (FP)(led_task), INT_PRIORITY(8), __TROUND_STK_UNIT(386), __stack_LED_TASK, TA_NULL, (FP)(NULL)},
 	{TA_HLNG | TA_ACT, (VP_INT)(( VP_INT ) 0), (FP)(sw_task), INT_PRIORITY(8), __TROUND_STK_UNIT(386), __stack_SW_TASK, TA_NULL, (FP)(NULL)},
+	{TA_HLNG | TA_ACT, (VP_INT)(( VP_INT ) 1), (FP)(led_task), INT_PRIORITY(8), __TROUND_STK_UNIT(386), __stack_LED1_TASK, TA_NULL, (FP)(NULL)},
+	{TA_HLNG | TA_ACT, (VP_INT)(( VP_INT ) 4), (FP)(led_task), INT_PRIORITY(8), __TROUND_STK_UNIT(386), __stack_LED4_TASK, TA_NULL, (FP)(NULL)},
 	{TA_HLNG | TA_ACT, (VP_INT)(( VP_INT ) 1), (FP)(logtask), INT_PRIORITY(LOGTASK_PRIORITY), __TROUND_STK_UNIT(LOGTASK_STACK_SIZE), __stack_LOGTASK, TA_NULL, (FP)(NULL)},
 	{TA_HLNG | TA_ACT, (VP_INT)(( VP_INT ) MONITOR_PORTID), (FP)(monitor), INT_PRIORITY(MONITOR_PRIORITY), __TROUND_STK_UNIT(MONITOR_STACK_SIZE), __stack_MONTASK, TA_NULL, (FP)(NULL)}
 };
 
-const ID _kernel_torder_table[TNUM_TSKID] = {1,2,3,4};
+const ID _kernel_torder_table[TNUM_TSKID] = {1,2,3,4,5,6};
 
 TCB _kernel_tcb_table[TNUM_TSKID];
 
@@ -121,7 +125,7 @@ __EMPTY_LABEL(MPFCB, _kernel_mpfcb_table);
 const ID _kernel_tmax_cycid = (TMIN_CYCID + TNUM_CYCID - 1);
 
 const CYCINIB _kernel_cycinib_table[TNUM_CYCID] = {
-	{TA_HLNG | TA_STA,( VP_INT ) 0,(FP)(rot_cyc_handler),ROT_INTERVAL,0}
+	{TA_HLNG | TA_STA,( VP_INT ) 0,(FP)(rot_cyc_handler),1,0}
 };
 
 CYCCB _kernel_cyccb_table[TNUM_CYCID];

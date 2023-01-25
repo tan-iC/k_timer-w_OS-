@@ -24,8 +24,8 @@
 <stringAttribute key="org.eclipse.cdt.launch.DEBUGGER_ID" value="jp.pizzafactory.debug.target.arm.elf.GDBStubDebugger"/>
 <stringAttribute key="org.eclipse.cdt.debug.mi.core.DEV_SPEED" value="115200"/>
 <stringAttribute key="org.eclipse.cdt.launch.DEBUGGER_START_MODE" value="attach"/>
-<booleanAttribute key="org.eclipse.cdt.launch.ENABLE_VARIABLE_BOOKKEEPING" value="false"/>
 <stringAttribute key="org.eclipse.cdt.launch.PROGRAM_NAME" value="Debug-JSP/led_2tasks.out"/>
+<booleanAttribute key="org.eclipse.cdt.launch.ENABLE_VARIABLE_BOOKKEEPING" value="false"/>
 <booleanAttribute key="CallLoad" value="true"/>
 <stringAttribute key="org.eclipse.cdt.debug.mi.core.DEV" value="/dev/ttyS0"/>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">

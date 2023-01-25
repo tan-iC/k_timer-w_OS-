@@ -3,9 +3,11 @@
 
 	/* object identifier deifnition */
 
+#define LED1_TASK            3
+#define LED4_TASK            4
 #define LED_TASK             1
-#define LOGTASK              3
-#define MONTASK              4
+#define LOGTASK              5
+#define MONTASK              6
 #define ROT_CYC_HANDLER      1
 #define SERIAL_RCV_SEM1      2
 #define SERIAL_RCV_SEM2      4

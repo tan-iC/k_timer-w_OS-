@@ -39,9 +39,11 @@ void checker_function(void)
 
 		/* task */
 
+	OBJECT(task_3,LED1_TASK);
+	OBJECT(task_4,LED4_TASK);
 	OBJECT(task_1,LED_TASK);
-	OBJECT(task_3,LOGTASK);
-	OBJECT(task_4,MONTASK);
+	OBJECT(task_5,LOGTASK);
+	OBJECT(task_6,MONTASK);
 	OBJECT(task_2,SW_TASK);
 	EVAR(ID,_kernel_tmax_tskid);
 	EVAR(TINIB,_kernel_tinib_table);

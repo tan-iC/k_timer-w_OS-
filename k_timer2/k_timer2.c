@@ -27,6 +27,21 @@ unsigned int sw_state;
 void flgptn2led_data(FLGPTN);
 
 
+/* LED delay time */
+#define  LED1_DELAY	1000
+#define  LED4_DELAY	250
+
+/* state */
+#define  OFF_STATE		0
+#define  ACTIVE_STATE	1
+#define  EXPIRED_STATE	2
+
+/* LED process */
+void led1_process();
+void led4_process();
+// void led2_process();
+
+
 /*
  * Initialization routine
  */ 
@@ -80,6 +95,40 @@ void flgptn2led_data(FLGPTN flgptn){
 }
 
 /*
+ * LED1
+ */
+void
+led1_process(){
+    for (;;) {
+
+        led_data &= ~LED1;
+        led_out(led_data);
+        dly_tsk(LED1_DELAY);
+        
+        led_data |=  LED1;
+        led_out(led_data);
+        dly_tsk(LED1_DELAY);
+    }
+}
+
+/*
+ * LED4
+ */
+void
+led4_process(){
+    for (;;) {
+
+        led_data &= ~LED4;
+        led_out(led_data);
+        dly_tsk(LED4_DELAY);
+        
+        led_data |=  LED4;
+        led_out(led_data);
+        dly_tsk(LED4_DELAY);
+    }
+}
+
+/*
  * LED light-up task
  */ 
 void
@@ -89,13 +138,31 @@ led_task(VP_INT exinf){
     for (;;) {
 		
 		/* Wait for flags and set LEDs */
-		/* flag */
-		wai_flg(SW_FLG, SW_EV_MASK, TWF_ORW, &flgptn);
-		
-		/* flgptn -> led_data */
-		flgptn2led_data(flgptn);		
-		led_out(led_data);
+		if (exinf == 0){
+			/* sw_flg_tsk */
 
+
+			/* flag */
+			wai_flg(SW_FLG, SW_EV_MASK, TWF_ORW, &flgptn);
+			
+			/* flgptn -> led_data */
+			flgptn2led_data(flgptn);
+		}
+		else if(exinf == 1){
+			/* led1_task */
+
+			/* */
+			led1_process();
+
+		}
+		else if(exinf == 4){
+			/* led4_task */
+
+			/* */
+			led4_process();
+
+		}
+		led_out(led_data);
     }
 }
 
@@ -144,7 +211,7 @@ sw_task(VP_INT exinf){
 			flgptn |= SW4_OFF;
 			}
 		}
-		
+
 		if (flgptn != 0) {
 			/* flag */
 			set_flg(SW_FLG, flgptn);

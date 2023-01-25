@@ -32,134 +32,138 @@ checker_function:
 .LM8:
 	squeue::prev,(#4),(#4)@
 .LM9:
-	dtask_1,LED_TASK@
+	dtask_3,LED1_TASK@
 .LM10:
-	dtask_3,LOGTASK@
+	dtask_4,LED4_TASK@
 .LM11:
-	dtask_4,MONTASK@
+	dtask_1,LED_TASK@
 .LM12:
-	dtask_2,SW_TASK@
+	dtask_5,LOGTASK@
 .LM13:
-	s_kernel_tmax_tskid,(#4),(0)@
+	dtask_6,MONTASK@
 .LM14:
-	s_kernel_tinib_table,(#32),(0)@
+	dtask_2,SW_TASK@
 .LM15:
-	stask_initialization_block::tskatr,(#4),(#0)@
+	s_kernel_tmax_tskid,(#4),(0)@
 .LM16:
-	stask_initialization_block::exinf,(#4),(#4)@
+	s_kernel_tinib_table,(#32),(0)@
 .LM17:
-	stask_initialization_block::task,(#4),(#8)@
+	stask_initialization_block::tskatr,(#4),(#0)@
 .LM18:
-	stask_initialization_block::ipriority,(#4),(#12)@
+	stask_initialization_block::exinf,(#4),(#4)@
 .LM19:
-	stask_initialization_block::stksz,(#4),(#16)@
+	stask_initialization_block::task,(#4),(#8)@
 .LM20:
-	stask_initialization_block::stk,(#4),(#20)@
+	stask_initialization_block::ipriority,(#4),(#12)@
 .LM21:
-	stask_initialization_block::texatr,(#4),(#24)@
+	stask_initialization_block::stksz,(#4),(#16)@
 .LM22:
-	stask_initialization_block::texrtn,(#4),(#28)@
+	stask_initialization_block::stk,(#4),(#20)@
 .LM23:
-	dsemaphore_2,SERIAL_RCV_SEM1@
+	stask_initialization_block::texatr,(#4),(#24)@
 .LM24:
-	dsemaphore_4,SERIAL_RCV_SEM2@
+	stask_initialization_block::texrtn,(#4),(#28)@
 .LM25:
-	dsemaphore_3,SERIAL_SND_SEM1@
+	dsemaphore_2,SERIAL_RCV_SEM1@
 .LM26:
-	dsemaphore_5,SERIAL_SND_SEM2@
+	dsemaphore_4,SERIAL_RCV_SEM2@
 .LM27:
-	dsemaphore_1,SID1@
+	dsemaphore_3,SERIAL_SND_SEM1@
 .LM28:
-	s_kernel_tmax_semid,(#4),(0)@
+	dsemaphore_5,SERIAL_SND_SEM2@
 .LM29:
-	s_kernel_seminib_table,(#12),(0)@
+	dsemaphore_1,SID1@
 .LM30:
-	ssemaphore_initialization_block::sematr,(#4),(#0)@
+	s_kernel_tmax_semid,(#4),(0)@
 .LM31:
-	ssemaphore_initialization_block::isemcnt,(#4),(#4)@
+	s_kernel_seminib_table,(#12),(0)@
 .LM32:
-	ssemaphore_initialization_block::maxsem,(#4),(#8)@
+	ssemaphore_initialization_block::sematr,(#4),(#0)@
 .LM33:
-	deventflag_1,SW_FLG@
+	ssemaphore_initialization_block::isemcnt,(#4),(#4)@
 .LM34:
-	s_kernel_tmax_flgid,(#4),(0)@
+	ssemaphore_initialization_block::maxsem,(#4),(#8)@
 .LM35:
-	s_kernel_flginib_table,(#8),(0)@
+	deventflag_1,SW_FLG@
 .LM36:
-	seventflag_initialization_block::flgatr,(#4),(#0)@
+	s_kernel_tmax_flgid,(#4),(0)@
 .LM37:
-	seventflag_initialization_block::iflgptn,(#4),(#4)@
+	s_kernel_flginib_table,(#8),(0)@
 .LM38:
-	s_kernel_tmax_dtqid,(#4),(0)@
+	seventflag_initialization_block::flgatr,(#4),(#0)@
 .LM39:
-	s_kernel_dtqinib_table,(#12),(0)@
+	seventflag_initialization_block::iflgptn,(#4),(#4)@
 .LM40:
-	sdataqueue_initialization_block::dtqatr,(#4),(#0)@
+	s_kernel_tmax_dtqid,(#4),(0)@
 .LM41:
-	sdataqueue_initialization_block::dtqcnt,(#4),(#4)@
+	s_kernel_dtqinib_table,(#12),(0)@
 .LM42:
-	sdataqueue_initialization_block::dtq,(#4),(#8)@
+	sdataqueue_initialization_block::dtqatr,(#4),(#0)@
 .LM43:
-	s_kernel_tmax_mbxid,(#4),(0)@
+	sdataqueue_initialization_block::dtqcnt,(#4),(#4)@
 .LM44:
-	s_kernel_mbxinib_table,(#8),(0)@
+	sdataqueue_initialization_block::dtq,(#4),(#8)@
 .LM45:
-	smailbox_initialization_block::mbxatr,(#4),(#0)@
+	s_kernel_tmax_mbxid,(#4),(0)@
 .LM46:
-	smailbox_initialization_block::maxmpri,(#4),(#4)@
+	s_kernel_mbxinib_table,(#8),(0)@
 .LM47:
-	s_kernel_tmax_mpfid,(#4),(0)@
+	smailbox_initialization_block::mbxatr,(#4),(#0)@
 .LM48:
-	s_kernel_mpfinib_table,(#16),(0)@
+	smailbox_initialization_block::maxmpri,(#4),(#4)@
 .LM49:
-	sfixed_memorypool_initialization_block::mpfatr,(#4),(#0)@
+	s_kernel_tmax_mpfid,(#4),(0)@
 .LM50:
-	sfixed_memorypool_initialization_block::blksz,(#4),(#4)@
+	s_kernel_mpfinib_table,(#16),(0)@
 .LM51:
-	sfixed_memorypool_initialization_block::mpf,(#4),(#8)@
+	sfixed_memorypool_initialization_block::mpfatr,(#4),(#0)@
 .LM52:
-	sfixed_memorypool_initialization_block::limit,(#4),(#12)@
+	sfixed_memorypool_initialization_block::blksz,(#4),(#4)@
 .LM53:
-	dcyclic_1,ROT_CYC_HANDLER@
+	sfixed_memorypool_initialization_block::mpf,(#4),(#8)@
 .LM54:
-	s_kernel_tmax_cycid,(#4),(0)@
+	sfixed_memorypool_initialization_block::limit,(#4),(#12)@
 .LM55:
-	s_kernel_cycinib_table,(#20),(0)@
+	dcyclic_1,ROT_CYC_HANDLER@
 .LM56:
-	scyclic_handler_initialization_block::cycatr,(#4),(#0)@
+	s_kernel_tmax_cycid,(#4),(0)@
 .LM57:
-	scyclic_handler_initialization_block::exinf,(#4),(#4)@
+	s_kernel_cycinib_table,(#20),(0)@
 .LM58:
-	scyclic_handler_initialization_block::cychdr,(#4),(#8)@
+	scyclic_handler_initialization_block::cycatr,(#4),(#0)@
 .LM59:
-	scyclic_handler_initialization_block::cyctim,(#4),(#12)@
+	scyclic_handler_initialization_block::exinf,(#4),(#4)@
 .LM60:
-	scyclic_handler_initialization_block::cycphs,(#4),(#16)@
+	scyclic_handler_initialization_block::cychdr,(#4),(#8)@
 .LM61:
-	dinterrupt_0,12@
+	scyclic_handler_initialization_block::cyctim,(#4),(#12)@
 .LM62:
-	dinterrupt_1,INHNO_SIO@
+	scyclic_handler_initialization_block::cycphs,(#4),(#16)@
 .LM63:
-	dinterrupt_2,INHNO_SIO2@
+	dinterrupt_0,12@
 .LM64:
-	s_kernel_tnum_inhno,(#4),(0)@
+	dinterrupt_1,INHNO_SIO@
 .LM65:
-	s_kernel_inhinib_table,(#12),(0)@
+	dinterrupt_2,INHNO_SIO2@
 .LM66:
-	sinterrupt_handler_initialization_block::inhno,(#4),(#0)@
+	s_kernel_tnum_inhno,(#4),(0)@
 .LM67:
-	sinterrupt_handler_initialization_block::inhatr,(#4),(#4)@
+	s_kernel_inhinib_table,(#12),(0)@
 .LM68:
-	sinterrupt_handler_initialization_block::inthdr,(#4),(#8)@
+	sinterrupt_handler_initialization_block::inhno,(#4),(#0)@
 .LM69:
-	s_kernel_tnum_excno,(#4),(0)@
+	sinterrupt_handler_initialization_block::inhatr,(#4),(#4)@
 .LM70:
-	s_kernel_excinib_table,(#12),(0)@
+	sinterrupt_handler_initialization_block::inthdr,(#4),(#8)@
 .LM71:
-	scpu_exception_handler_initialization_block::excno,(#4),(#0)@
+	s_kernel_tnum_excno,(#4),(0)@
 .LM72:
-	scpu_exception_handler_initialization_block::excatr,(#4),(#4)@
+	s_kernel_excinib_table,(#12),(0)@
 .LM73:
+	scpu_exception_handler_initialization_block::excno,(#4),(#0)@
+.LM74:
+	scpu_exception_handler_initialization_block::excatr,(#4),(#4)@
+.LM75:
 	scpu_exception_handler_initialization_block::exchdr,(#4),(#8)@
 	mov	pc, lr
 .LFE36:
@@ -420,7 +424,7 @@ checker_function:
 	.byte	0x5
 	.byte	0x2
 	.4byte	.LM23
-	.byte	0x19
+	.byte	0x15
 	.byte	0x0
 	.byte	0x5
 	.byte	0x2
@@ -430,7 +434,7 @@ checker_function:
 	.byte	0x5
 	.byte	0x2
 	.4byte	.LM25
-	.byte	0x15
+	.byte	0x19
 	.byte	0x0
 	.byte	0x5
 	.byte	0x2
@@ -470,7 +474,7 @@ checker_function:
 	.byte	0x5
 	.byte	0x2
 	.4byte	.LM33
-	.byte	0x19
+	.byte	0x15
 	.byte	0x0
 	.byte	0x5
 	.byte	0x2
@@ -480,7 +484,7 @@ checker_function:
 	.byte	0x5
 	.byte	0x2
 	.4byte	.LM35
-	.byte	0x15
+	.byte	0x19
 	.byte	0x0
 	.byte	0x5
 	.byte	0x2
@@ -495,7 +499,7 @@ checker_function:
 	.byte	0x5
 	.byte	0x2
 	.4byte	.LM38
-	.byte	0x19
+	.byte	0x15
 	.byte	0x0
 	.byte	0x5
 	.byte	0x2
@@ -505,7 +509,7 @@ checker_function:
 	.byte	0x5
 	.byte	0x2
 	.4byte	.LM40
-	.byte	0x15
+	.byte	0x19
 	.byte	0x0
 	.byte	0x5
 	.byte	0x2
@@ -520,7 +524,7 @@ checker_function:
 	.byte	0x5
 	.byte	0x2
 	.4byte	.LM43
-	.byte	0x19
+	.byte	0x15
 	.byte	0x0
 	.byte	0x5
 	.byte	0x2
@@ -530,7 +534,7 @@ checker_function:
 	.byte	0x5
 	.byte	0x2
 	.4byte	.LM45
-	.byte	0x15
+	.byte	0x19
 	.byte	0x0
 	.byte	0x5
 	.byte	0x2
@@ -540,7 +544,7 @@ checker_function:
 	.byte	0x5
 	.byte	0x2
 	.4byte	.LM47
-	.byte	0x19
+	.byte	0x15
 	.byte	0x0
 	.byte	0x5
 	.byte	0x2
@@ -550,7 +554,7 @@ checker_function:
 	.byte	0x5
 	.byte	0x2
 	.4byte	.LM49
-	.byte	0x15
+	.byte	0x19
 	.byte	0x0
 	.byte	0x5
 	.byte	0x2
@@ -570,7 +574,7 @@ checker_function:
 	.byte	0x5
 	.byte	0x2
 	.4byte	.LM53
-	.byte	0x19
+	.byte	0x15
 	.byte	0x0
 	.byte	0x5
 	.byte	0x2
@@ -580,7 +584,7 @@ checker_function:
 	.byte	0x5
 	.byte	0x2
 	.4byte	.LM55
-	.byte	0x15
+	.byte	0x19
 	.byte	0x0
 	.byte	0x5
 	.byte	0x2
@@ -610,7 +614,7 @@ checker_function:
 	.byte	0x5
 	.byte	0x2
 	.4byte	.LM61
-	.byte	0x19
+	.byte	0x15
 	.byte	0x0
 	.byte	0x5
 	.byte	0x2
@@ -620,7 +624,7 @@ checker_function:
 	.byte	0x5
 	.byte	0x2
 	.4byte	.LM63
-	.byte	0x15
+	.byte	0x19
 	.byte	0x0
 	.byte	0x5
 	.byte	0x2
@@ -650,7 +654,7 @@ checker_function:
 	.byte	0x5
 	.byte	0x2
 	.4byte	.LM69
-	.byte	0x19
+	.byte	0x15
 	.byte	0x0
 	.byte	0x5
 	.byte	0x2
@@ -660,7 +664,7 @@ checker_function:
 	.byte	0x5
 	.byte	0x2
 	.4byte	.LM71
-	.byte	0x15
+	.byte	0x19
 	.byte	0x0
 	.byte	0x5
 	.byte	0x2
@@ -670,6 +674,16 @@ checker_function:
 	.byte	0x5
 	.byte	0x2
 	.4byte	.LM73
+	.byte	0x15
+	.byte	0x0
+	.byte	0x5
+	.byte	0x2
+	.4byte	.LM74
+	.byte	0x15
+	.byte	0x0
+	.byte	0x5
+	.byte	0x2
+	.4byte	.LM75
 	.byte	0x15
 	.byte	0x0
 	.byte	0x5
