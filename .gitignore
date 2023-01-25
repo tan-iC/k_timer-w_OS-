@@ -1,5 +1,6 @@
 .*
 Debug-JSP
 makefile*
+*.zip
 !.gitignore
 !README.md
