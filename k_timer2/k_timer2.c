@@ -8,46 +8,54 @@
 #include "k_timer2.h"
 
 /*
- * Bit assignment for events
- */ 
+ * switch
+ */
+/* Bit assignment for events */ 
 #define  DSW1_ON	0x01
 #define  DSW1_OFF	0x02
 #define  PSW1_ON	0x04
 #define  PSW1_OFF	0x08
 #define  SW_EV_MASK	0xff 
 
-unsigned char led_data;
-
 /* switch state */
 unsigned int dsw_state;
 unsigned int psw_state;
 
-
-/* LED delay time */
+/*
+ * LED
+ */
+/* time about LED */
 #define  LED1_DELAY	1000
 #define  LED4_DELAY	250
 #define  LED4_INTERVAL	2000
 
-/* No. of LED4 blink  */
+/* count of LED4 blink */
 #define  BLINK_ACTIVE	4
 #define  BLINK_EXPIRED	60
 
-/* state */
-#define  OFF_STATE		0
-#define  ACTIVE_STATE	1
-#define  EXPIRED_STATE	2
-unsigned char timer_state = 0;
-
-/* timer */
-#define	TIMER_INTERVAL	1000
-#define BASE_TIME		10
-unsigned long time_left = 0;
-void timer_process();
+/* LED state data */
+unsigned char led_data;
 
 /* LED process */
 void led1_process();
 void led2_process();
 void led4_process();
+
+/*
+ * timer
+ */
+/* state (3 types) */
+#define  OFF_STATE		0
+#define  ACTIVE_STATE	1
+#define  EXPIRED_STATE	2
+unsigned char timer_state = 0;
+
+/* time */
+#define	TIMER_INTERVAL	1000
+#define BASE_TIME		10
+unsigned long time_left = 0;
+void timer_process();
+
 
 
 
@@ -82,15 +90,13 @@ state_init(VP_INT exinf){
 void
 led1_process(){
     for (;;) {
-
-		// wai_sem(SID1);
-        led_data &= ~LED1;
-        led_out(led_data);
-        dly_tsk(LED1_DELAY);
-        
         led_data |=  LED1;
         led_out(led_data);
         dly_tsk(LED1_DELAY);
+
+        led_data &= ~LED1;
+        led_out(led_data);
+        dly_tsk(LED1_DELAY);        
     }
 }
 
@@ -147,18 +153,20 @@ led4_process(){
     }
 }
 
+
 /*
- * LED light-up task
+ * led_task : LED1_TASK, LED4_TASK
+ * (LED light-up task)
  */ 
 void
 led_task(VP_INT exinf){
     
     for (;;) {
-		if(exinf == (VP_INT)1){
+		if(exinf == (VP_INT) 1){
 			/* led1_task */
 			led1_process();
 		}
-		else if(exinf == (VP_INT)4){
+		else if(exinf == (VP_INT) 4){
 			/* led4_task */
 			led4_process();
 		}
@@ -169,7 +177,8 @@ led_task(VP_INT exinf){
 
 
 /*
- *  Switch status read task
+ * sw_task : SW_TASK
+ * (Switch status read task)
  */ 
 void
 sw_task(VP_INT exinf){
@@ -223,23 +232,28 @@ timer_process(){
 	if (time_left > 0){
 		time_left -= TIMER_INTERVAL;
 		if (time_left == 0){
-			timer_state =EXPIRED_STATE;
-		}
-	}
-}
-
-void
-timer_task(VP_INT exinf){
-	for (;;){
-		if (timer_state == ACTIVE_STATE){
-			dly_tsk(TIMER_INTERVAL);
-			timer_process();
+			timer_state = EXPIRED_STATE;
 		}
 	}
 }
 
 /*
- * state task
+ * timer task : TIMER_TASK
+ * (ONLY ACTIVE_STATE)
+ */
+void
+timer_task(VP_INT exinf){
+	for (;;){
+		if (timer_state == ACTIVE_STATE){
+			timer_process();
+			dly_tsk(TIMER_INTERVAL);
+		}
+	}
+}
+
+/*
+ * state task : STATE_TASK
+ * (receive SW_FLG, then work)
  */
 void
 state_task(VP_INT exinf){
