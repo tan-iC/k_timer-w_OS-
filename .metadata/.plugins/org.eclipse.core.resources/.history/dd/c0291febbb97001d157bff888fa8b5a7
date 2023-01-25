@@ -1,0 +1,22 @@
+#define _MACRO_ONLY
+#include "sw_flg_tsk.h"
+
+INCLUDE("\"sw_flg_tsk.h\"");
+INCLUDE("\"device.h\"");
+
+CRE_TSK(LED_TASK, { TA_HLNG|TA_ACT, (VP_INT) 0, led_task, DEFAULT_PRIORITY, 
+                    STACK_SIZE, NULL });
+
+CRE_TSK(SW_TASK , { TA_HLNG|TA_ACT, (VP_INT) 0, sw_task, DEFAULT_PRIORITY, 
+                    STACK_SIZE, NULL });
+
+ATT_INI({ TA_HLNG, 0, led_init });
+ATT_INI({ TA_HLNG, 0, switch_dip_init });
+ATT_INI({ TA_HLNG, 0, state_init });
+
+CRE_FLG(SW_FLG, {(TA_TFIFO|TA_CLR), 0});
+
+#include "../systask/timer.cfg"
+#include "../systask/serial.cfg"
+#include "../systask/logtask.cfg"
+#include "../monitor/monitor.cfg"

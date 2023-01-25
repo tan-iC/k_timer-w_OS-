@@ -1,0 +1,14 @@
+#Thu Jan 19 14:32:53 JST 2023
+eclipse.preferences.version=1
+environment/buildEnvironmentInclude/pizza.toppers.jsp.armv4.config.gnu.arm.elf.exe.debug.1514770820=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<environment>\r\n<variable name\="CPATH" operation\="remove"/>\r\n<variable name\="C_INCLUDE_PATH" operation\="remove"/>\r\n</environment>\r\n
+environment/buildEnvironmentInclude/pizza.toppers.jsp.armv4.config.gnu.arm.elf.exe.debug.300619022=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<environment>\r\n<variable name\="CPATH" operation\="remove"/>\r\n<variable name\="C_INCLUDE_PATH" operation\="remove"/>\r\n</environment>\r\n
+environment/buildEnvironmentLibrary/pizza.toppers.jsp.armv4.config.gnu.arm.elf.exe.debug.1514770820=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<environment>\r\n<variable name\="LIBRARY_PATH" operation\="remove"/>\r\n</environment>\r\n
+environment/buildEnvironmentLibrary/pizza.toppers.jsp.armv4.config.gnu.arm.elf.exe.debug.300619022=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<environment>\r\n<variable name\="LIBRARY_PATH" operation\="remove"/>\r\n</environment>\r\n
+environment/project=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<environment/>\r\n
+environment/project/pizza.toppers.jsp.armv4.config.gnu.arm.elf.exe.debug.1514770820=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<environment/>\r\n
+pizza.managedbuild.config.gnu.arm.elf.exe.debug.2072027564/internalBuilder/enabled=false
+pizza.managedbuild.config.gnu.arm.elf.exe.debug.2072027564/internalBuilder/ignoreErr=true
+pizza.toppers.jsp.armv4.config.gnu.arm.elf.exe.debug.1514770820/internalBuilder/enabled=false
+pizza.toppers.jsp.armv4.config.gnu.arm.elf.exe.debug.1514770820/internalBuilder/ignoreErr=true
+pizza.toppers.jsp.armv4.config.gnu.arm.elf.exe.debug.300619022/internalBuilder/enabled=false
+pizza.toppers.jsp.armv4.config.gnu.arm.elf.exe.debug.300619022/internalBuilder/ignoreErr=true

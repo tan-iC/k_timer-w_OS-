@@ -1,0 +1,194 @@
+#      Toyohashi Open Platform for Embedded Real-Time Systems/
+#      Just Standard Profile Kernel
+# 
+#  Copyright (C) 2000-2003 by Embedded and Real-Time Systems Laboratory
+#                              Toyohashi Univ. of Technology, JAPAN
+# 
+#  上記著作権者は，以下の (1)～(4) の条件か，Free Software Foundation 
+#  によって公表されている GNU General Public License の Version 2 に記
+#  述されている条件を満たす場合に限り，本ソフトウェア（本ソフトウェア
+#  を改変したものを含む．以下同じ）を使用・複製・改変・再配布（以下，
+#  利用と呼ぶ）することを無償で許諾する．
+#  (1) 本ソフトウェアをソースコードの形で利用する場合には，上記の著作
+#      権表示，この利用条件および下記の無保証規定が，そのままの形でソー
+#      スコード中に含まれていること．
+#  (2) 本ソフトウェアを，ライブラリ形式など，他のソフトウェア開発に使
+#      用できる形で再配布する場合には，再配布に伴うドキュメント（利用
+#      者マニュアルなど）に，上記の著作権表示，この利用条件および下記
+#      の無保証規定を掲載すること．
+#  (3) 本ソフトウェアを，機器に組み込むなど，他のソフトウェア開発に使
+#      用できない形で再配布する場合には，次のいずれかの条件を満たすこ
+#      と．
+#    (a) 再配布に伴うドキュメント（利用者マニュアルなど）に，上記の著
+#        作権表示，この利用条件および下記の無保証規定を掲載すること．
+#    (b) 再配布の形態を，別に定める方法によって，TOPPERSプロジェクトに
+#        報告すること．
+#  (4) 本ソフトウェアの利用により直接的または間接的に生じるいかなる損
+#      害からも，上記著作権者およびTOPPERSプロジェクトを免責すること．
+# 
+#  本ソフトウェアは，無保証で提供されているものである．上記著作権者お
+#  よびTOPPERSプロジェクトは，本ソフトウェアに関して，その適用可能性も
+#  含めて，いかなる保証も行わない．また，本ソフトウェアの利用により直
+#  接的または間接的に生じたいかなる損害に関しても，その責任を負わない．
+# 
+#  @(#) $Id: makefile.init,v 1.2 2007/07/03 08:22:33 mitsu Exp $
+# 
+
+#
+#  プログラミング言語の定義
+#
+ifeq ($(LANG),c++)
+  USE_CXX = 1
+  CXXLIBS = -lstdc++ -lm -lc 
+  CXXRTS  = cxxrt.o newlibrt.o
+endif
+
+#
+#  オブジェクトファイル名の拡張子の設定
+#
+OBJEXT = 
+
+#
+#  実行環境の定義（どれにも該当しない場合は，すべてコメントアウトする）
+#		 （ターゲット依存に上書きされる場合がある）
+#
+DBGENV := GDB_STUB
+
+#AT91SAM7S用　ROM起動の場合はtrueにする
+VECTOR_IN_ROM=
+
+#
+#  カーネルライブラリ（libkernel.a）のディレクトリ名
+#  （カーネルライブラリも make 対象にする時は，空に定義する）
+#
+KERNEL_LIB = 
+
+#
+#  ターゲット依存の定義のインクルード
+#
+ifdef TOOL
+    ifdef SYS
+        include $(CONFIGDIR)/$(CPU)-$(TOOL)/$(SYS)/Makefile.config
+    endif
+    include $(CONFIGDIR)/$(CPU)-$(TOOL)/Makefile.config
+else
+    ifdef SYS
+        include $(CONFIGDIR)/$(CPU)/$(SYS)/Makefile.config
+    endif
+    include $(CONFIGDIR)/$(CPU)/Makefile.config
+endif
+
+#
+#  共通コンパイルオプションの定義
+#
+COPTS := $(COPTS)
+CDEFS := $(CDEFS)
+INCLUDES := -I. -I$(SRCDIR)/include $(INCLUDES) -I..
+LDFLAGS := -nostdlib $(LDFLAGS)
+
+LIBS := $(LIBS) $(CXXLIBS) -lgcc
+CFLAGS = $(COPTS) $(CDEFS) $(INCLUDES)
+
+#
+#  ミドルウェア定義のインクルード
+#
+include $(SRCDIR)/monitor/Makefile.config
+
+#
+#  アプリケーションプログラムに関する定義
+#
+UNAME = jsp_prog
+UTASK_CFG = $(ROOT)/$(UNAME).cfg
+
+UTASK_DIR = $(SRCDIR)/library
+UTASK_ASMOBJS =
+ifdef USE_CXX
+#  UTASK_CXXOBJS = $(UNAME).o 
+else
+#  UTASK_COBJS = $(UNAME).o 
+endif
+UTASK_CFLAGS =
+UTASK_LIBS =
+
+
+#
+#  システムサービスに関する定義
+#
+STASK_DIR := $(STASK_DIR):$(SRCDIR)/systask:$(SRCDIR)/library
+STASK_ASMOBJS := $(STASK_ASMOBJS)
+STASK_COBJS := $(STASK_COBJS) timer.o serial.o logtask.o \
+	      log_output.o vasyslog.o t_perror.o strerror.o \
+	      $(CXXRTS)
+STASK_CFLAGS := $(STASK_CFLAGS) -I$(SRCDIR)/systask
+STASK_LIBS := $(STASK_LIBS)
+
+#
+#  カーネルに関する定義
+#
+#  KERNEL_ASMOBJS: カーネルライブラリに含める，ソースがアセンブリ言語の
+#		   オブジェクトファイル．
+#  KERNEL_COBJS: カーネルのライブラリに含める，ソースがC言語で，ソース
+#		 ファイルと1対1に対応するオブジェクトファイル．
+#  KERNEL_LCSRCS: カーネルのライブラリに含めるC言語のソースファイルで，
+#		  1つのソースファイルから複数のオブジェクトファイルを生
+#		  成するもの（Makefile.kernel で定義）．
+#  KERNEL_LCOBJS: 上のソースファイルから生成されるオブジェクトファイル
+#		  （Makefile.kernel で定義）．
+#  KERNEL_AUX_COBJS: ロードモジュールに含めないが，カーネルのソースファ
+#		     イルと同じオプションを適用してコンパイルすべきファ
+#		     イル．
+#
+KERNEL = $(SRCDIR)/kernel
+KERNEL_DIR := $(KERNEL_DIR):$(KERNEL)
+KERNEL_ASMOBJS := $(KERNEL_ASMOBJS)
+KERNEL_COBJS := startup.o banner.o $(KERNEL_COBJS)
+KERNEL_CFLAGS := $(KERNEL_CFLAGS) -I$(KERNEL) -DNDEBUG
+ifdef OMIT_MAKEOFFSET
+    OFFSET_H = 
+    KERNEL_AUX_COBJS = kernel_chk.o
+else
+    OFFSET_H = offset.h
+    KERNEL_AUX_COBJS = makeoffset.o kernel_chk.o
+endif
+
+#
+#  オブジェクトファイル名の定義
+#
+OBJNAME = jsp
+ifdef OBJEXT
+    OBJFILE = $(OBJNAME).$(OBJEXT)
+else
+    OBJFILE = $(OBJNAME)
+endif
+
+#
+#  カーネルライブラリに関連する定義
+#
+ifdef KERNEL_LIB
+    MAKE_KERNEL = 
+    LIBKERNEL = $(KERNEL_LIB)/libkernel.a
+else
+    MAKE_KERNEL = libkernel.a
+    LIBKERNEL = $(MAKE_KERNEL)
+endif
+
+#
+#  コンパイルのための変数の定義
+#
+KERNEL_LIB_OBJS = $(KERNEL_ASMOBJS) $(KERNEL_COBJS) $(KERNEL_LCOBJS)
+STASK_OBJS = $(STASK_ASMOBJS) $(STASK_COBJS)
+UTASK_OBJS = $(UTASK_ASMOBJS) $(UTASK_COBJS) $(UTASK_CXXOBJS)
+TASK_OBJS = $(UTASK_OBJS) $(STASK_OBJS) kernel_cfg.o
+ALL_OBJS = $(TASK_OBJS)
+ALL_LIBS = $(UTASK_LIBS) $(STASK_LIBS) $(LIBKERNEL) $(LIBS)
+
+ifdef TEXT_START_ADDRESS
+    LDFLAGS := $(LDFLAGS) -Wl,-Ttext,$(TEXT_START_ADDRESS)
+endif
+ifdef DATA_START_ADDRESS
+    LDFLAGS := $(LDFLAGS) -Wl,-Tdata,$(DATA_START_ADDRESS)
+endif
+ifdef LDSCRIPT
+    LDFLAGS := $(LDFLAGS) -T $(CONFIGDIR)/$(LDSCRIPT)
+endif
+

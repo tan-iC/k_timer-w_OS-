@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="jp.pizzafactory.debug.tool.openocd.LaunchConfigurationType">
+<stringAttribute key="jp.pizzafactory.debug.tool.openocd.ui.ATTR_USE_PRESET_SCRIPT" value="jp.ac.nagoya-u.is.nces.nexcess.cource01.openocd.scripts.at91sam128.ram"/>
+<booleanAttribute key="jp.pizzafactory.debug.tool.openocd.ui.ATTR_USE_DEFAULT_EXECUTABLE" value="true"/>
+</launchConfiguration>
