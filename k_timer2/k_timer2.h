@@ -17,6 +17,8 @@ extern void sw_cyc_handler(void);
 extern void state_init(VP_INT exinf);
 
 /* additional */
+extern void timer_task(VP_INT exinf);
+extern void state_task(VP_INT exinf);
 void rot_cyc_handler(void);
 
 #endif /* _MACRO_ONLY */
