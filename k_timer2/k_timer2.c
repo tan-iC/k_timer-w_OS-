@@ -64,23 +64,22 @@ void timer_process();
  */ 
 void
 state_init(VP_INT exinf){
-    led_data = 0;   
-    dsw_state = switch_dip_sense();
-    
-    if((dsw_state & DSW1) == DSW1){
-        led_data |= LED1;
-    }
-    if((dsw_state & DSW2) == DSW2){
-        led_data |= LED2;
-    }
-    if((dsw_state & DSW3) == DSW3){
-        led_data |= LED3;
-    }
-    if((dsw_state & DSW4) == DSW4){
-        led_data |= LED4;
-    }    
-    
-    led_out(led_data);
+	led_data = 0;
+	dsw_state = switch_dip_sense();
+
+	if((dsw_state & DSW1) == DSW1){
+		led_data |= LED1;
+	}
+	if((dsw_state & DSW2) == DSW2){
+		led_data |= LED2;
+	}
+	if((dsw_state & DSW3) == DSW3){
+		led_data |= LED3;
+	}
+	if((dsw_state & DSW4) == DSW4){
+		led_data |= LED4;
+	}
+	led_out(led_data);
 }
 
 
@@ -89,15 +88,15 @@ state_init(VP_INT exinf){
  */
 void
 led1_process(){
-    for (;;) {
-        led_data |=  LED1;
-        led_out(led_data);
-        dly_tsk(LED1_DELAY);
+	for (;;) {
+		led_data |=  LED1;
+		led_out(led_data);
+		dly_tsk(LED1_DELAY);
 
-        led_data &= ~LED1;
-        led_out(led_data);
-        dly_tsk(LED1_DELAY);        
-    }
+		led_data &= ~LED1;
+		led_out(led_data);
+		dly_tsk(LED1_DELAY);
+	}
 }
 
 /*
@@ -115,7 +114,7 @@ led2_process(){
 		else{
 			/* LED2 : ON -> OFF */
 			led_data &= ~LED2;
-			led_out(led_data);			
+			led_out(led_data);
 		}
 	}
 }
@@ -127,9 +126,9 @@ void led4_blink(unsigned int cnt){
 	/* blink LED4 ${cnt} times */
 	unsigned int i;
 	for(i = 0; i < cnt; i++){
-        led_data |=  LED4;
-        led_out(led_data);
-        dly_tsk(LED4_DELAY);
+		led_data |=  LED4;
+		led_out(led_data);
+		dly_tsk(LED4_DELAY);
 		led_data &= ~LED4;
 		led_out(led_data);
 		dly_tsk(LED4_DELAY);
@@ -139,7 +138,8 @@ void led4_blink(unsigned int cnt){
 
 void
 led4_process(){
-    for (;;) {
+
+	for (;;) {
 		if (timer_state == ACTIVE_STATE){
 			/* blink (ACTIVE_STATE) */
 			led4_blink(BLINK_ACTIVE/2);
@@ -150,7 +150,7 @@ led4_process(){
 			led4_blink(BLINK_EXPIRED/2);
 			timer_state = OFF_STATE;
 		}
-    }
+	}
 }
 
 
@@ -160,8 +160,8 @@ led4_process(){
  */ 
 void
 led_task(VP_INT exinf){
-    
-    for (;;) {
+
+	for (;;) {
 		if(exinf == (VP_INT) 1){
 			/* led1_task */
 			led1_process();
@@ -171,7 +171,7 @@ led_task(VP_INT exinf){
 			led4_process();
 		}
 		led_out(led_data);
-    }
+	}
 }
 
 
@@ -182,7 +182,7 @@ led_task(VP_INT exinf){
  */ 
 void
 sw_task(VP_INT exinf){
-    FLGPTN   flgptn;
+	FLGPTN   flgptn;
 	unsigned int tmp_dsw;
 	unsigned int tmp_psw;
 
@@ -216,7 +216,7 @@ sw_task(VP_INT exinf){
 			psw_state = tmp_psw;
 
 			/* flag */
-			set_flg(SW_FLG, flgptn);			
+			set_flg(SW_FLG, flgptn);
 		}
 		dly_tsk(SW_SCAN_INTERVAL);
 	}
@@ -258,9 +258,9 @@ timer_task(VP_INT exinf){
 void
 state_task(VP_INT exinf){
 	/* control timer state */
-    FLGPTN   flgptn;
-    
-    for (;;) {
+	FLGPTN   flgptn;
+
+	for (;;) {
 		/* flag */
 		wai_flg(SW_FLG, SW_EV_MASK, TWF_ORW, &flgptn);
 
@@ -292,7 +292,7 @@ state_task(VP_INT exinf){
 			led2_process();
 			time_left += BASE_TIME * TIMER_INTERVAL;
 		}
-    }
+	}
 }
 
 /*
@@ -300,5 +300,5 @@ state_task(VP_INT exinf){
  */ 
 void
 rot_cyc_handler(void){
-    irot_rdq(DEFAULT_PRIORITY);
+	irot_rdq(DEFAULT_PRIORITY);
 }
